@@ -99,9 +99,18 @@ const displayPhone = singlePhone => {
             others.USB = "Not Found",
             others.WLAN = "Not Found"
 
-        // others = "Not Found";
         singlePhone.others = others;
     }
+    // check the undefine property 
+    if (singlePhone.mainFeatures.chipSet == undefined) {
+        singlePhone.mainFeatures.chipSet = "Not Found"
+    }
+    if (singlePhone.mainFeatures.memory == undefined) {
+        singlePhone.mainFeatures.memory = "Not Found"
+    }
+
+
+
     // set single all details 
     const div = document.createElement('div')
     div.innerHTML = `
@@ -122,7 +131,7 @@ const displayPhone = singlePhone => {
                      
                       <p class="card-info text-center">Sensors: ${singlePhone.mainFeatures.sensors[0]},${singlePhone.mainFeatures.sensors[1]},${singlePhone.mainFeatures.sensors[2]},${singlePhone.mainFeatures.sensors[3]},${singlePhone.mainFeatures.sensors[4]},${singlePhone.mainFeatures.sensors[5]}</p>
                      
-                      <p class="card-info text-center">Blootooth: ${singlePhone.others.Bluetooth}, GPS: ${singlePhone.others.GPS}, NFC: ${singlePhone.others.NFC}, Radio: ${singlePhone.others.Radio}, USB: ${singlePhone.others.USB}, WLAN: ${singlePhone.others.WLAN}</p>
+                      <p class="card-info text-center">Others- Blootooth: ${singlePhone.others.Bluetooth}, GPS: ${singlePhone.others.GPS}, NFC: ${singlePhone.others.NFC}, Radio: ${singlePhone.others.Radio}, USB: ${singlePhone.others.USB}, WLAN: ${singlePhone.others.WLAN}</p>
                       
                         
                       </div>
