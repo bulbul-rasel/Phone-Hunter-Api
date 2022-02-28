@@ -44,7 +44,7 @@ const displayPhoneResult = (phones) => {
         const div = document.createElement('div')
         div.innerHTML = `
                 <div class="col">
-                  <div class="card p-3">
+                  <div class="card p-3 shadow">
                     <img src="${phone.image}" class="card-img-top" alt="...">
                     <div class="card-body align-center">
                       <h5 class="card-title  text-center">${phone.phone_name}</h5>
@@ -69,6 +69,7 @@ const loadDetails = (id) => {
     fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
         .then(res => res.json())
         .then(data => displayPhone(data.data))
+    document.getElementById('phone-details').innerHTML = ''
 }
 
 const displayPhone = singlePhone => {
@@ -77,7 +78,7 @@ const displayPhone = singlePhone => {
     const div = document.createElement('div')
     div.innerHTML = `
                 <div class=" d-flex justify-content-center">
-                  <div class="card p-3 "style="width: 18rem;">
+                  <div class="card p-3 shadow"style="width: 18rem;">
                     <img src="${singlePhone.image}" class="card-img-top" alt="...">
                     <div class="card-body align-center">
                       <p class="card-title  text-center">Model: ${singlePhone.name}</p>
@@ -85,6 +86,10 @@ const displayPhone = singlePhone => {
                       <p class="card-info text-center">Memory: ${singlePhone.mainFeatures.memory}</p>
                       <p class="card-info text-center">Storage: ${singlePhone.mainFeatures.storage}</p>
                       <p class="card-info text-center">Display Size: ${singlePhone.mainFeatures.displaySize}</p>
+                     
+                      <p class="card-info text-center">Sensors: ${singlePhone.mainFeatures.sensors[0]},${singlePhone.mainFeatures.sensors[1]},${singlePhone.mainFeatures.sensors[2]},${singlePhone.mainFeatures.sensors[3]},${singlePhone.mainFeatures.sensors[4]},${singlePhone.mainFeatures.sensors[5]}</p>
+                     
+                      <p class="card-info text-center">Blootooth: ${singlePhone.others.Bluetooth}, GPS: ${singlePhone.others.GPS}, NFC: ${singlePhone.others.NFC}, Radio: ${singlePhone.others.Radio}, USB: ${singlePhone.others.USB}, WLAN: ${singlePhone.others.WLAN}</p>
                       
                       <p class="card-info text-center">Release Date: ${singlePhone.releaseDate}</p>
                       
