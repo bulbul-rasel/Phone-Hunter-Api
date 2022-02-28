@@ -18,18 +18,20 @@
             aria-label="Recipient's username" aria-describedby="button-addon2">
         <button onclick="searchPhone()" class="btn btn-outline-success" type="button" id="button-search">Search</button>
     </div>
-    <!-- Something 
-    <div id="output" style="display: none" class="mx-auto text-danger text-center">
-
-    </div> -->
+    <!-- No Result Found  -->
+    <div id="no-result" style="display: none" class="mx-auto text-danger text-center">
+        <h4>No Result Found</h4>
+    </div>
+    <!-- Give some input  -->
+    <div id="no-input" style="display: none" class="mx-auto text-success text-center">
+        <h4>Please Enter Phone Name</h4>
+    </div>
     <!-- spinner -->
     <div class="d-flex justify-content-center">
         <div id="spinner" style="display: none;" class="spinner-border text-success" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
     </div>
-    <!-- Error Message  -->
-    <div id="error-message" class="text-center text-danger">Something went Wrong Please try again</div>
 
     <!-- single Phone details  -->
     <div id="phone-details" class="w-100 m-2 mx-auto">

@@ -1,47 +1,49 @@
+// Common Global Variable
 const searchField = document.getElementById('search-field')
 const searchResults = document.getElementById('search-results')
 const phoneDetails = document.getElementById('phone-details')
-document.getElementById('error-message').style.display = 'none'
+document.getElementById('no-result').style.display = 'none'
+document.getElementById('spinner').style.display = 'none'
 
+// For Search All Phone 
 const searchPhone = () => {
-
     const searchText = searchField.value;
     console.log(searchText);
-    searchField.value = ''
+    searchField.value = '' //remove search field value
+
+    // check the input field is null
     if (searchText == '') {
-        // const display = document.getElementById('output').style.display = 'block'
-        // const div = document.createElement('div')
-        // div.innerHTML = `
-        // <h3>Please Write something</h3>
-        // `
-        // display.appendChild(div)
         searchResults.textContent = ''
-        document.getElementById('spinner').style.display = 'block'
+        document.getElementById('no-result').style.display = 'none'
+        document.getElementById('no-input').style.display = 'block'
+
     } else {
+        // if the input field is not null then check the url with searchText 
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
+        //fetch url
         fetch(url)
             .then(res => res.json())
-            .then(data => displayPhoneResult(data.data.slice(0, 20)))
-        // .catch(error => displayError(error))
+            .then(data => displayPhoneResult(data.data.slice(0, 20))) //show 20 result
         console.log(url);
+        document.getElementById('spinner').style.display = 'block'
         document.getElementById('search-results').innerHTML = ''
     }
 }
-const displayError = error => {
-    document.getElementById('error-message').style.display = 'block'
-}
-
+//  display all phone 
 const displayPhoneResult = (phones) => {
-
+    // check the searching value have or not 
     if (phones.length == 0) {
-        alert('Not Found');
+        document.getElementById('no-result').style.display = 'block'
+        document.getElementById('no-input').style.display = 'none'
+        document.getElementById('spinner').style.display = 'none'
     }
-
+    // display phone 
     phones.forEach(phone => {
         console.log(phone);
-
+        document.getElementById('no-result').style.display = 'none'
         document.getElementById('spinner').style.display = 'none'
-
+        document.getElementById('no-input').style.display = 'none'
+        // set all phone information 
         const div = document.createElement('div')
         div.innerHTML = `
                 <div class="col">
@@ -62,26 +64,32 @@ const displayPhoneResult = (phones) => {
     })
 
 
-    document.getElementById('spinner').style.display = 'none'
+    document.getElementById('phone-details').innerHTML = ''
 }
 
+// load single phone id 
 const loadDetails = (id) => {
     console.log(id);
+    // fetch phone id data 
     fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
         .then(res => res.json())
         .then(data => displayPhone(data.data))
     document.getElementById('phone-details').innerHTML = ''
 }
 
+// display single phone details 
 const displayPhone = singlePhone => {
     console.log(singlePhone);
+    // check the realease date property 
     if (singlePhone.releaseDate == "") {
         singlePhone.releaseDate = "No Release Date Found";
     }
+    // check the others property 
     if (singlePhone.others != undefined) {
 
     }
     else {
+        // set others property 
         others = new Object();
 
         others.Bluetooth = "Not Found",
@@ -94,13 +102,19 @@ const displayPhone = singlePhone => {
         // others = "Not Found";
         singlePhone.others = others;
     }
+    // set single all details 
     const div = document.createElement('div')
     div.innerHTML = `
                 <div class=" d-flex justify-content-center">
-                  <div class="card p-3 shadow" style="width: 40rem;">
-                    <img src="${singlePhone.image}" class="card-img-top w-50 " alt="...">
+                  <div class="card p-3 shadow" style="width: 30rem;">
+                  <img src="${singlePhone.image}" class="card-img-top w-100" alt="...">  
+                  
                     <div class="card-body align-center">
                       <p class="card-title  text-center">Model: ${singlePhone.name}</p>
+                      
+                      <p class="card-info text-center">Release Date:
+                      ${singlePhone.releaseDate}</p>  
+
                       <p class="card-info text-center">ChipSet: ${singlePhone.mainFeatures.chipSet}</p>
                       <p class="card-info text-center">Memory: ${singlePhone.mainFeatures.memory}</p>
                       <p class="card-info text-center">Storage: ${singlePhone.mainFeatures.storage}</p>
@@ -110,8 +124,7 @@ const displayPhone = singlePhone => {
                      
                       <p class="card-info text-center">Blootooth: ${singlePhone.others.Bluetooth}, GPS: ${singlePhone.others.GPS}, NFC: ${singlePhone.others.NFC}, Radio: ${singlePhone.others.Radio}, USB: ${singlePhone.others.USB}, WLAN: ${singlePhone.others.WLAN}</p>
                       
-                      <p class="card-info text-center">Release Date:
-                       ${singlePhone.releaseDate}</p>    
+                        
                       </div>
                   </div>
                 </div>
