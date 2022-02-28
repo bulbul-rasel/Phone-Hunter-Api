@@ -10,8 +10,28 @@
     <title>Phone Finder</title>
 </head>
 
-<body>
+<body class="container">
     <h1 class="text-success text-center mx-auto">Phone Finder</h1>
+    <!-- Phone search area  -->
+    <div class="input-group mx-auto w-50 mb-3">
+        <input id="search-field" type="text" class="form-control" placeholder="Search your finding Phone..."
+            aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button onclick="searchPhone()" class="btn btn-outline-success" type="button" id="button-search">Search</button>
+    </div>
+    <!-- spinner -->
+    <div class="d-flex justify-content-center">
+        <div id="spinner" style="display: none;" class="spinner-border text-success" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+
+
+    <!-- load all Phone  -->
+    <div id="search-results" class="row row-cols-1 row-cols-md-3 g-3 w-75 mx-auto container">
+
+
+    </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
