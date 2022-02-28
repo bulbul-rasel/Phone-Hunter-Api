@@ -21,7 +21,7 @@ const searchPhone = () => {
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
         fetch(url)
             .then(res => res.json())
-            .then(data => displayPhoneResult(data.data))
+            .then(data => displayPhoneResult(data.data.slice(0, 20)))
         // .catch(error => displayError(error))
         console.log(url);
         document.getElementById('search-results').innerHTML = ''
@@ -30,6 +30,7 @@ const searchPhone = () => {
 const displayError = error => {
     document.getElementById('error-message').style.display = 'block'
 }
+
 const displayPhoneResult = (phones) => {
 
     if (phones.length == 0) {
@@ -74,12 +75,30 @@ const loadDetails = (id) => {
 
 const displayPhone = singlePhone => {
     console.log(singlePhone);
+    if (singlePhone.releaseDate == "") {
+        singlePhone.releaseDate = "No Release Date Found";
+    }
+    if (singlePhone.others != undefined) {
 
+    }
+    else {
+        others = new Object();
+
+        others.Bluetooth = "Not Found",
+            others.GPS = "Not Found",
+            others.NFC = "Not Found",
+            others.Radio = "Not Found",
+            others.USB = "Not Found",
+            others.WLAN = "Not Found"
+
+        // others = "Not Found";
+        singlePhone.others = others;
+    }
     const div = document.createElement('div')
     div.innerHTML = `
                 <div class=" d-flex justify-content-center">
-                  <div class="card p-3 shadow"style="width: 18rem;">
-                    <img src="${singlePhone.image}" class="card-img-top" alt="...">
+                  <div class="card p-3 shadow" style="width: 40rem;">
+                    <img src="${singlePhone.image}" class="card-img-top w-50 " alt="...">
                     <div class="card-body align-center">
                       <p class="card-title  text-center">Model: ${singlePhone.name}</p>
                       <p class="card-info text-center">ChipSet: ${singlePhone.mainFeatures.chipSet}</p>
@@ -91,8 +110,8 @@ const displayPhone = singlePhone => {
                      
                       <p class="card-info text-center">Blootooth: ${singlePhone.others.Bluetooth}, GPS: ${singlePhone.others.GPS}, NFC: ${singlePhone.others.NFC}, Radio: ${singlePhone.others.Radio}, USB: ${singlePhone.others.USB}, WLAN: ${singlePhone.others.WLAN}</p>
                       
-                      <p class="card-info text-center">Release Date: ${singlePhone.releaseDate}</p>
-                      
+                      <p class="card-info text-center">Release Date:
+                       ${singlePhone.releaseDate}</p>    
                       </div>
                   </div>
                 </div>
