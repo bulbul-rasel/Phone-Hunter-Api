@@ -53,7 +53,7 @@ const displayPhoneResult = (phones) => {
                     <div class="card-body align-center">
                       <h5 class="card-title  text-center">${phone.phone_name}</h5>
                       <h5 class="card-info text-center">${phone.brand}</h5>
-                      <button onclick="loadDetails('${phone.slug}')" class="btn btn-success d-flex justify-content-center text-center mx-auto">Details</button>
+                      <button  onclick="loadDetails('${phone.slug}')" class="btn btn-success d-flex justify-content-center text-center mx-auto">Details</button>
                       
                       </div>
                   </div>
@@ -74,11 +74,16 @@ const loadDetails = (id) => {
         .then(res => res.json())
         .then(data => displayPhone(data.data))
     document.getElementById('phone-details').innerHTML = ''
+
+    window.scrollTo({
+        top: 0, left: 0, behavior: "smooth"
+    })
 }
 
 // display single phone details 
 const displayPhone = singlePhone => {
     console.log(singlePhone);
+
 
     // check the others property 
     if (singlePhone.others != undefined) {
@@ -102,7 +107,7 @@ const displayPhone = singlePhone => {
     const div = document.createElement('div')
     div.innerHTML = `
                 <div class=" col d-flex justify-content-center">
-                  <div class="card p-3 g-4 shadow" style="width: 30rem;">
+                  <div class="card p-3 g-4 shadow" style="width: 50rem;">
                   <img src="${singlePhone.image}" class="card-img-top w-50 mx-auto" alt="..."> 
                   
                   
