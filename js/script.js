@@ -58,11 +58,9 @@ const displayPhoneResult = (phones) => {
                   </div>
                 </div>
                 `
-
         searchResults.appendChild(div)
 
     })
-
 
     document.getElementById('phone-details').innerHTML = ''
 }
@@ -109,33 +107,33 @@ const displayPhone = singlePhone => {
         singlePhone.mainFeatures.memory = "Not Found"
     }
 
-
-
     // set single all details 
     const div = document.createElement('div')
     div.innerHTML = `
                 <div class=" d-flex justify-content-center">
-                  <div class="card p-3 shadow" style="width: 30rem;">
-                  <img src="${singlePhone.image}" class="card-img-top w-100" alt="...">  
+                  <div class="card p-3 g-4 shadow" style="width: 30rem;">
+                  <img src="${singlePhone.image}" class="card-img-top w-100 " alt="..."> 
+                  
                   
                     <div class="card-body align-center">
-                      <p class="card-title  text-center">Model: ${singlePhone.name}</p>
+                      <p class="card-title  text-center"><strong>Model:</strong> ${singlePhone.name}</p>
                       
-                      <p class="card-info text-center">Release Date:
+                      <p class="card-info text-center"> <strong>Release Date:</strong>
                       ${singlePhone.releaseDate}</p>  
 
-                      <p class="card-info text-center">ChipSet: ${singlePhone.mainFeatures.chipSet}</p>
-                      <p class="card-info text-center">Memory: ${singlePhone.mainFeatures.memory}</p>
-                      <p class="card-info text-center">Storage: ${singlePhone.mainFeatures.storage}</p>
-                      <p class="card-info text-center">Display Size: ${singlePhone.mainFeatures.displaySize}</p>
+                      <p class="card-info text-center"><strong>ChipSet:</strong> ${singlePhone.mainFeatures.chipSet}</p>
+                      <p class="card-info text-center"><strong>Memory:</strong> ${singlePhone.mainFeatures.memory}</p>
+                      <p class="card-info text-center"><strong>Storage:</strong> ${singlePhone.mainFeatures.storage}</p>
+                      <p class="card-info text-center"><strong>Display Size:</strong> ${singlePhone.mainFeatures.displaySize}</p>
                      
-                      <p class="card-info text-center">Sensors: ${singlePhone.mainFeatures.sensors[0]},${singlePhone.mainFeatures.sensors[1]},${singlePhone.mainFeatures.sensors[2]},${singlePhone.mainFeatures.sensors[3]},${singlePhone.mainFeatures.sensors[4]},${singlePhone.mainFeatures.sensors[5]}</p>
+                      <p class="card-info text-center"><h5 class='text-center'>Sensors: </h5> ${singlePhone.mainFeatures.sensors[0] ? singlePhone.mainFeatures.sensors[0] : 'Not Found'},${singlePhone.mainFeatures.sensors[1] ? singlePhone.mainFeatures.sensors[1] : "Not Found"},${singlePhone.mainFeatures.sensors[2] ? singlePhone.mainFeatures.sensors[2] : "Not Found"},${singlePhone.mainFeatures.sensors[3] ? singlePhone.mainFeatures.sensors[3] : "Not Found"},${singlePhone.mainFeatures.sensors[4] ? singlePhone.mainFeatures.sensors[4] : "NotFound"},${singlePhone.mainFeatures.sensors[5] ? singlePhone.mainFeatures.sensors[5] : "Not Found"}</p>
                      
-                      <p class="card-info text-center">Others- Blootooth: ${singlePhone.others.Bluetooth}, GPS: ${singlePhone.others.GPS}, NFC: ${singlePhone.others.NFC}, Radio: ${singlePhone.others.Radio}, USB: ${singlePhone.others.USB}, WLAN: ${singlePhone.others.WLAN}</p>
+                      <p class="card-info text-center"><h5 class='text-center'>Other: </h5><strong> Blootooth: </strong>${singlePhone.others.Bluetooth},<strong> GPS:</strong> ${singlePhone.others.GPS},<strong> NFC:</strong> ${singlePhone.others.NFC},<strong> Radio: </strong>${singlePhone.others.Radio},<strong> USB:</strong> ${singlePhone.others.USB},<strong> WLAN:</strong> ${singlePhone.others.WLAN}</p>
                       
                         
                       </div>
                   </div>
+                
                 </div>
                 `
     phoneDetails.appendChild(div)
