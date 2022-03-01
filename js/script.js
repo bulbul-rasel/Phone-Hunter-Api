@@ -16,6 +16,7 @@ const searchPhone = () => {
         searchResults.textContent = ''
         document.getElementById('no-result').style.display = 'none'
         document.getElementById('no-input').style.display = 'block'
+        document.getElementById('phone-details').innerHTML = ""
 
     } else {
         // if the input field is not null then check the url with searchText 
@@ -121,14 +122,17 @@ const displayPhone = singlePhone => {
                       <p class="card-info text-center"> <strong>Release Date:</strong>
                       ${singlePhone.releaseDate}</p>  
 
+                      <h5 class='text-center'>Main Features: </h5> 
                       <p class="card-info text-center"><strong>ChipSet:</strong> ${singlePhone.mainFeatures.chipSet}</p>
                       <p class="card-info text-center"><strong>Memory:</strong> ${singlePhone.mainFeatures.memory}</p>
                       <p class="card-info text-center"><strong>Storage:</strong> ${singlePhone.mainFeatures.storage}</p>
                       <p class="card-info text-center"><strong>Display Size:</strong> ${singlePhone.mainFeatures.displaySize}</p>
-                     
-                      <p class="card-info text-center"><h5 class='text-center'>Sensors: </h5> ${singlePhone.mainFeatures.sensors[0] ? singlePhone.mainFeatures.sensors[0] : 'Not Found'},${singlePhone.mainFeatures.sensors[1] ? singlePhone.mainFeatures.sensors[1] : "Not Found"},${singlePhone.mainFeatures.sensors[2] ? singlePhone.mainFeatures.sensors[2] : "Not Found"},${singlePhone.mainFeatures.sensors[3] ? singlePhone.mainFeatures.sensors[3] : "Not Found"},${singlePhone.mainFeatures.sensors[4] ? singlePhone.mainFeatures.sensors[4] : "NotFound"},${singlePhone.mainFeatures.sensors[5] ? singlePhone.mainFeatures.sensors[5] : "Not Found"}</p>
-                     
-                      <p class="card-info text-center"><h5 class='text-center'>Other: </h5><strong> Blootooth: </strong>${singlePhone.others.Bluetooth},<strong> GPS:</strong> ${singlePhone.others.GPS},<strong> NFC:</strong> ${singlePhone.others.NFC},<strong> Radio: </strong>${singlePhone.others.Radio},<strong> USB:</strong> ${singlePhone.others.USB},<strong> WLAN:</strong> ${singlePhone.others.WLAN}</p>
+
+                      <h5 class='text-center'>Sensors: </h5> 
+                      <p class="card-info text-center">${singlePhone.mainFeatures.sensors}</p>
+
+                      <h5 class='text-center'>Other: </h5><strong>
+                      <p class="card-info text-center"> Blootooth: </strong>${singlePhone.others.Bluetooth},<strong> GPS:</strong> ${singlePhone.others.GPS},<strong> NFC:</strong> ${singlePhone.others.NFC},<strong> Radio: </strong>${singlePhone.others.Radio},<strong> USB:</strong> ${singlePhone.others.USB},<strong> WLAN:</strong> ${singlePhone.others.WLAN}</p>
                       
                         
                       </div>
