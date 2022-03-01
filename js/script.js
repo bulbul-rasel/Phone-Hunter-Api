@@ -101,9 +101,9 @@ const displayPhone = singlePhone => {
     // set single all details with optional chainning
     const div = document.createElement('div')
     div.innerHTML = `
-                <div class=" d-flex justify-content-center">
+                <div class=" col d-flex justify-content-center">
                   <div class="card p-3 g-4 shadow" style="width: 30rem;">
-                  <img src="${singlePhone.image}" class="card-img-top w-100 " alt="..."> 
+                  <img src="${singlePhone.image}" class="card-img-top w-50 mx-auto" alt="..."> 
                   
                   
                     <div class="card-body align-center">
