@@ -79,10 +79,7 @@ const loadDetails = (id) => {
 // display single phone details 
 const displayPhone = singlePhone => {
     console.log(singlePhone);
-    // check the realease date property 
-    if (singlePhone.releaseDate == "") {
-        singlePhone.releaseDate = "No Release Date Found";
-    }
+
     // check the others property 
     if (singlePhone.others != undefined) {
 
@@ -100,15 +97,8 @@ const displayPhone = singlePhone => {
 
         singlePhone.others = others;
     }
-    // check the undefine property 
-    if (singlePhone.mainFeatures.chipSet == undefined) {
-        singlePhone.mainFeatures.chipSet = "Not Found"
-    }
-    if (singlePhone.mainFeatures.memory == undefined) {
-        singlePhone.mainFeatures.memory = "Not Found"
-    }
 
-    // set single all details 
+    // set single all details with optional chainning
     const div = document.createElement('div')
     div.innerHTML = `
                 <div class=" d-flex justify-content-center">
@@ -120,16 +110,16 @@ const displayPhone = singlePhone => {
                       <p class="card-title  text-center"><strong>Model:</strong> ${singlePhone.name}</p>
                       
                       <p class="card-info text-center"> <strong>Release Date:</strong>
-                      ${singlePhone.releaseDate}</p>  
+                      ${singlePhone.releaseDate ? singlePhone.releaseDate : "Release Date Not Found"}</p>  
 
                       <h5 class='text-center'>Main Features: </h5> 
-                      <p class="card-info text-center"><strong>ChipSet:</strong> ${singlePhone.mainFeatures.chipSet}</p>
-                      <p class="card-info text-center"><strong>Memory:</strong> ${singlePhone.mainFeatures.memory}</p>
-                      <p class="card-info text-center"><strong>Storage:</strong> ${singlePhone.mainFeatures.storage}</p>
-                      <p class="card-info text-center"><strong>Display Size:</strong> ${singlePhone.mainFeatures.displaySize}</p>
+                      <p class="card-info text-center"><strong>ChipSet:</strong> ${singlePhone.mainFeatures.chipSet ? singlePhone.mainFeatures.chipSet : "Not Found"}</p>
+                      <p class="card-info text-center"><strong>Memory:</strong> ${singlePhone.mainFeatures.memory ? singlePhone.mainFeatures.memory : "Not Found"}</p>
+                      <p class="card-info text-center"><strong>Storage:</strong> ${singlePhone.mainFeatures.storage ? singlePhone.mainFeatures.storage : "Not Found"}</p>
+                      <p class="card-info text-center"><strong>Display Size:</strong> ${singlePhone.mainFeatures.displaySize ? singlePhone.mainFeatures.displaySize : "Not Found"}</p>
 
                       <h5 class='text-center'>Sensors: </h5> 
-                      <p class="card-info text-center">${singlePhone.mainFeatures.sensors}</p>
+                      <p class="card-info text-center">${singlePhone.mainFeatures.sensors ? singlePhone.mainFeatures.sensors : "Not Found"}</p>
 
                       <h5 class='text-center'>Other: </h5><strong>
                       <p class="card-info text-center"> Blootooth: </strong>${singlePhone.others.Bluetooth},<strong> GPS:</strong> ${singlePhone.others.GPS},<strong> NFC:</strong> ${singlePhone.others.NFC},<strong> Radio: </strong>${singlePhone.others.Radio},<strong> USB:</strong> ${singlePhone.others.USB},<strong> WLAN:</strong> ${singlePhone.others.WLAN}</p>
